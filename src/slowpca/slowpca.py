@@ -30,7 +30,6 @@ def main(use_cov, filename):
     np.savetxt(f'{output}.ev', evecs)
 
 
-
 def perform_pca(data, corr=False):
     """Perform PCA based on covariance/correlation."""
     # scaler data to make mean-free (std-free)
