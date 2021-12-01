@@ -8,8 +8,8 @@ import numpy as np
 @click.command(no_args_is_help=True)
 @click.option(
     '--cov/--corr',
-    'use_corr',
-    default=False,
+    'use_cov',
+    default=True,
     help='Use covariance or correlation for PCA.',
 )
 @click.argument(
@@ -17,16 +17,18 @@ import numpy as np
     required=True,
     type=click.Path(exists=True),
 )
-def main(use_corr, filename):
+def main(use_cov, filename):
     """Main function"""
-    data = np.loadtxt(filename, ndmin=2)
-    mode = 'corr' if use_corr else 'cov'
+    data = np.loadtxt(filename)
+    mode = 'cov' if use_cov else 'corr'
+    output = f'{filename}.{mode}'
 
-    # scaler data to make std-free
-    if use_corr:
+    # scaler data to make mean-free (std-free)
+    data = data - np.mean(data, axis=0)
+    if not use_cov:
         data = data / np.std(data, axis=0, ddof=1)
 
-    # calculate cov/corr matrix
+    # calculate cov/corr matrix and diagonalize
     cov = np.cov(data, rowvar=False)
     evals, evecs = np.linalg.eigh(cov)
 
@@ -38,14 +40,8 @@ def main(use_corr, filename):
     proj = data @ evecs
 
     # store results
-    np.savetxt(
-        f'{filename}.{mode}.proj',
-        proj,
-    )
-    np.savetxt(
-        f'{filename}.{mode}.ev',
-        evecs,
-    )
+    np.savetxt(f'{output}.proj', proj)
+    np.savetxt(f'{output}.ev', evecs)
 
 
 if __name__ == '__main__':
