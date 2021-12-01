@@ -23,9 +23,19 @@ def main(use_cov, filename):
     mode = 'cov' if use_cov else 'corr'
     output = f'{filename}.{mode}'
 
+    proj, evecs = perform_pca(data, corr=not use_cov)
+
+    # store results
+    np.savetxt(f'{output}.proj', proj)
+    np.savetxt(f'{output}.ev', evecs)
+
+
+
+def perform_pca(data, corr=False):
+    """Perform PCA based on covariance/correlation."""
     # scaler data to make mean-free (std-free)
     data = data - np.mean(data, axis=0)
-    if not use_cov:
+    if corr:
         data = data / np.std(data, axis=0, ddof=1)
 
     # calculate cov/corr matrix and diagonalize
@@ -38,10 +48,7 @@ def main(use_cov, filename):
 
     # project the data to ev
     proj = data @ evecs
-
-    # store results
-    np.savetxt(f'{output}.proj', proj)
-    np.savetxt(f'{output}.ev', evecs)
+    return proj, evecs
 
 
 if __name__ == '__main__':
