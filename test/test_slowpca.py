@@ -4,13 +4,24 @@ import pytest
 
 import slowpca
 
-
-def test_perform_pca():
+@pytest.mark.parametrize('traj, kwargs, proj_ref', [
+    (
+        np.array([[0, 0], [1, 1]]),
+        {},
+        np.sqrt(2) / 2 * np.array([[-1, 0], [1, 0]]),
+    ),
+    (
+        np.array([[0, 0], [1, 1]]),
+        {'corr': False},
+        np.sqrt(2) / 2 * np.array([[-1, 0], [1, 0]]),
+    ),
+    (
+        np.array([[0, 0], [1, 1]]),
+        {'corr': True},
+        np.array([[-1, 0], [1, 0]]),
+    ),
+])
+def test_perform_pca(traj, kwargs, proj_ref):
     """Test function for testing PCA."""
-
-    traj = np.array([[0, 0 ], [1, 1]])
-    proj_ref = np.sqrt(2) / 2 * np.array([[-1, 0], [1, 0]])
-
-    proj, _ = slowpca.perform_pca(traj)
-
+    proj, _ = slowpca.perform_pca(traj, **kwargs)
     np.testing.assert_array_almost_equal(proj, proj_ref)
