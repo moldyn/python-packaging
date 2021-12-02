@@ -29,3 +29,7 @@ def main(use_cov, filename):
     # store results
     np.savetxt(f'{output}.proj', proj)
     np.savetxt(f'{output}.ev', evecs)
+
+
+if __name__ == '__main__':
+    main()
