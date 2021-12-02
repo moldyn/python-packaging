@@ -16,7 +16,7 @@ INDEX=[
 {
 "ref":"slowpca.slowpca.perform_pca",
 "url":1,
-"doc":"Perform PCA based on covariance/correlation.",
+"doc":"Perform PCA. This method performs PCA based on covariance or correlation. Parameters      data : ndarray Coordinate trajectory file of shape (n_frames, n_coords). corr : bool, default=False If  True correlation is used instead of covariance. Returns    - proj, evecs : ndarray Projection and eigenvectors.",
 "func":1
 }
 ]

@@ -33,6 +33,25 @@
 import numpy as np
 
 def perform_pca(data, corr=False):
+    &#34;&#34;&#34;Perform PCA.
+
+    This method performs PCA based on covariance or correlation.
+
+    Parameters
+    ----------
+    data : ndarray
+        Coordinate trajectory file of shape (n_frames, n_coords).
+
+    corr : bool, default=False
+        If `True` correlation is used instead of covariance.
+
+    Returns
+    -------
+    proj, evecs : ndarray
+        Projection and eigenvectors.
+
+    &#34;&#34;&#34;
+
     &#34;&#34;&#34;Perform PCA based on covariance/correlation.&#34;&#34;&#34;
     # scaler data to make mean-free (std-free)
     data = data - np.mean(data, axis=0)
@@ -63,12 +82,44 @@ def perform_pca(data, corr=False):
 <span>def <span class="ident">perform_pca</span></span>(<span>data, corr=False)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Perform PCA based on covariance/correlation.</p></div>
+<div class="desc"><p>Perform PCA.</p>
+<p>This method performs PCA based on covariance or correlation.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>data</code></strong> :&ensp;<code>ndarray</code></dt>
+<dd>Coordinate trajectory file of shape (n_frames, n_coords).</dd>
+<dt><strong><code>corr</code></strong> :&ensp;<code>bool</code>, default=<code>False</code></dt>
+<dd>If <code>True</code> correlation is used instead of covariance.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>proj</code></strong>, <strong><code>evecs</code></strong> :&ensp;<code>ndarray</code></dt>
+<dd>Projection and eigenvectors.</dd>
+</dl></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def perform_pca(data, corr=False):
+    &#34;&#34;&#34;Perform PCA.
+
+    This method performs PCA based on covariance or correlation.
+
+    Parameters
+    ----------
+    data : ndarray
+        Coordinate trajectory file of shape (n_frames, n_coords).
+
+    corr : bool, default=False
+        If `True` correlation is used instead of covariance.
+
+    Returns
+    -------
+    proj, evecs : ndarray
+        Projection and eigenvectors.
+
+    &#34;&#34;&#34;
+
     &#34;&#34;&#34;Perform PCA based on covariance/correlation.&#34;&#34;&#34;
     # scaler data to make mean-free (std-free)
     data = data - np.mean(data, axis=0)
