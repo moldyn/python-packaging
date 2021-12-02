@@ -1,3 +1,15 @@
+<div align="center">
+  <p>
+    <a href="https://github.com/wemake-services/wemake-python-styleguide" alt="wemake-python-styleguide" >
+        <img src="https://img.shields.io/badge/style-wemake-000000.svg" /></a>
+    <a href="https://github.com/moldyn/python-packaging/blob/main/LICENSE" alt="License" >
+        <img src="https://img.shields.io/github/license/moldyn/python-packaging" /></a>
+    <a href="https://moldyn.github.io/python-packaging" alt="Docs" >
+        <img src="https://img.shields.io/badge/pdoc3-Documentation-brightgreen" /></a>
+  </p>
+</div>
+
+
 # slowpca
 Slowpca is a package to perform principal component analysis based on
 correlation or covariance. This Repository is a only an example of
