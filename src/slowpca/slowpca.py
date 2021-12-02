@@ -3,6 +3,25 @@
 import numpy as np
 
 def perform_pca(data, corr=False):
+    """Perform PCA.
+
+    This method performs PCA based on covariance or correlation.
+
+    Parameters
+    ----------
+    data : ndarray
+        Coordinate trajectory file of shape (n_frames, n_coords).
+
+    corr : bool, default=False
+        If `True` correlation is used instead of covariance.
+
+    Returns
+    -------
+    proj, evecs : ndarray
+        Projection and eigenvectors.
+
+    """
+
     """Perform PCA based on covariance/correlation."""
     # scaler data to make mean-free (std-free)
     data = data - np.mean(data, axis=0)
